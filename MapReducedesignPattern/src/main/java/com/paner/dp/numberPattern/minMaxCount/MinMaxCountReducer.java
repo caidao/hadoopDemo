@@ -4,6 +4,7 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  *
@@ -28,17 +29,17 @@ public class MinMaxCountReducer extends Reducer<Text,MinMaxCountTuple,Text,MinMa
         int sum = 0;
 
         for (MinMaxCountTuple val : values){
-            if (val.getMin() == null || val.getMin().compareTo(result.getMin())<0){
+            if (result.getMin() == null || val.getMin().compareTo(result.getMin())<0){
                 result.setMin(val.getMin());
             }
 
-            if (val.getMax() == null || val.getMax().compareTo(result.getMax())>0){
-                result.setMax(result.getMax());
+            if (result.getMax() == null || val.getMax().compareTo(result.getMax())>0){
+                result.setMax(val.getMax());
             }
             sum += val.getCount();
         }
         result.setCount(sum);
-        System.out.println("key = [" + key + "], values = [" + values + "]");
+        System.out.println("key = [" + key + "], result = [" + result + "]");
         context.write(key,result);
     }
 }

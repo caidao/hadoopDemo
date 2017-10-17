@@ -64,6 +64,9 @@ public class MinMaxCountTuple implements Writable{
     }
 
     public String toString(){
+        if (min==null|| max==null){
+            return "";
+        }
         return frmt.format(min)+"\t"+frmt.format(max)+"\t"+count;
     }
 }
