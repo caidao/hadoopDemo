@@ -126,6 +126,7 @@ public class OffsetQueryService implements Serializable {
                 }
             } catch (Exception e) {
                 System.err.println("find leader error....");
+                e.printStackTrace();
             }finally{
                 if(consumer!=null){
                     consumer.close();

@@ -45,10 +45,10 @@ public class TopicService {
         String zkAddress = clusterId;//getZkAddressById(clusterId);
         //List<String> seeds = Arrays.asList(brokers.split(","));
 
-        topic ="paner_new1";
+        topic ="mobile-pubt-page-event-xg";
         int port =9092;
         List<String> seeds =new ArrayList<String>();
-        seeds.add("127.0.0.1");
+        seeds.add("10.0.42.50");
 
         OffsetQueryService.PartitionOffset partitionOffset = new OffsetQueryService(topic, port, seeds).getOffsetWithPartitions();
 
@@ -64,7 +64,7 @@ public class TopicService {
 
             SimpleConsumer consumer = new SimpleConsumer(leadBroker, port, 100000, 64 * 1024, clientName);
 
-            FetchRequest req = new FetchRequestBuilder().clientId(clientName).addFetch(topic,i, readOffset-MAX_OFFSET_SIZE, 1000000).build();
+            FetchRequest req = new FetchRequestBuilder().clientId(clientName).addFetch(topic,i, readOffset-MAX_OFFSET_SIZE, 1000000000).build();
             FetchResponse fetchResponse = consumer.fetch(req);
 
             System.out.println("info::::" + fetchResponse);
