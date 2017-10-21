@@ -36,6 +36,8 @@ public class MinMaxCountMain {
             job.setOutputValueClass(MinMaxCountTuple.class);
 
             job.setMapperClass(MinMaxCountMapper.class);
+            //优化的点
+            job.setCombinerClass(MinMaxCountReducer.class);
             job.setReducerClass(MinMaxCountReducer.class);
 
             job.setInputFormatClass(TextInputFormat.class);
