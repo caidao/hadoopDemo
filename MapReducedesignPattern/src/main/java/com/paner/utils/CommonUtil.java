@@ -17,7 +17,7 @@ import java.util.Map;
 public class CommonUtil {
 
     public static Map<String,String> transformXmlToMap(String value){
-        System.out.println("value = [" + value + "]");
+       // System.out.println("value = [" + value + "]");
         Map<String,String> map = new HashMap<String, String>();
         try {
             Document document = DocumentHelper.parseText(value);
