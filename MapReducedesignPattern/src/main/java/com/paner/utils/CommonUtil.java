@@ -1,12 +1,11 @@
 package com.paner.utils;
 
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
+import org.dom4j.*;
 import org.dom4j.dom.DOMDocument;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,6 +23,7 @@ public class CommonUtil {
             if (!"row".equals(document.getRootElement().getName())){
                 return null;
             }
+
             map.put("Id",document.getRootElement().attributeValue("Id"));
             map.put("PostId",document.getRootElement().attributeValue("PostId"));
             map.put("Score",document.getRootElement().attributeValue("Score"));
@@ -36,6 +36,24 @@ public class CommonUtil {
         return new HashMap<String, String>();
     }
 
+    public static Element getXmlElemetFromString(String value){
+        try {
+            Document document = DocumentHelper.parseText(value);
+            return document.getRootElement();
+        } catch (DocumentException e) {
+
+        }
+        return null;
+    }
+
+    public static void copyAttrubutesToElement(List attrList,Element element){
+         element.setAttributes(attrList);
+
+    }
+
+    public static String transformDocToString(Document document){
+        return document.asXML();
+    }
 
     private static  Map<String,String> initMap(){
        Map<String,String> map = new HashMap<String, String>();
