@@ -22,7 +22,7 @@ public class PartitionerMain {
 
     public static void main(String[] args) {
         try {
-            String dstFile = "/Users/pan/code/hadoopDemo/MapReducedesignPattern/src/main/resources/input";
+            String dstFile = "/Users/pan/code/hadoopDemo/MapReducedesignPattern/src/main/resources/comments";
             String srcFile = "/Users/pan/code/hadoopDemo/MapReducedesignPattern/src/main/resources/output";
 
             Configuration conf = new Configuration();

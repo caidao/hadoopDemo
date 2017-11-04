@@ -1,10 +1,8 @@
 package com.paner.utils;
 
 import org.dom4j.*;
-import org.dom4j.dom.DOMDocument;
-
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,12 +21,16 @@ public class CommonUtil {
             if (!"row".equals(document.getRootElement().getName())){
                 return null;
             }
-
-            map.put("Id",document.getRootElement().attributeValue("Id"));
-            map.put("PostId",document.getRootElement().attributeValue("PostId"));
-            map.put("Score",document.getRootElement().attributeValue("Score"));
-            map.put("CreationDate",document.getRootElement().attributeValue("CreationDate"));
-            map.put("UserId",document.getRootElement().attributeValue("UserId"));
+            Iterator<Attribute> item = document.getRootElement().attributeIterator();
+            while (item.hasNext()){
+                Attribute attribute = item.next();
+                map.put(attribute.getName(),attribute.getValue());
+            }
+//            map.put("Id",document.getRootElement().attributeValue("Id"));
+//            map.put("PostId",document.getRootElement().attributeValue("PostId"));
+//            map.put("Score",document.getRootElement().attributeValue("Score"));
+//            map.put("CreationDate",document.getRootElement().attributeValue("CreationDate"));
+//            map.put("UserId",document.getRootElement().attributeValue("UserId"));
             return map;
         } catch (DocumentException e) {
         }
