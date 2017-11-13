@@ -18,7 +18,7 @@ public class LastAccessDateMapper extends Mapper<Object,Text,Text,Text>{
 
     @Override
     protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
-        Map<String,String> parsed = CommonUtil.transformXmlToMap(value.toString());
+        Map<String,String> parsed = CommonUtil.transformXmlToMap(key.toString());
         String lastAccessDate = parsed.get("LastAccessDate");
         if (lastAccessDate==null){
             return;
